@@ -11,6 +11,15 @@ namespace MilestoneConsoleApp
         static int size = 12;
         static int tableWidth = 80;
         static Board board;
+
+        public Board Board
+        {
+            get => default(Board);
+            set
+            {
+            }
+        }
+
         static void Main(string[] args)
         {
             
@@ -57,30 +66,6 @@ namespace MilestoneConsoleApp
         static void PrintLine()
         {
             Console.WriteLine(new string('-', tableWidth));
-        }
-
-        static void PrintRow(params string[] columns)
-        {
-            int width = (tableWidth - columns.Length) / columns.Length;
-            string row = "|";
-            foreach(string column in columns)
-            {
-                row += AlignCenter(column, width) + "|";
-            }
-            Console.WriteLine(row);
-        }
-
-        static string AlignCenter(string text, int width)
-        {
-            text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
-
-            if (string.IsNullOrEmpty(text))
-            {
-                return new string(' ', width);
-            }
-            else {
-                return text.PadRight(width - (width - text.Length) / 2).PadLeft(width);
-            }
         }
     }
 }
