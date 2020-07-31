@@ -10,16 +10,14 @@ namespace MilestoneConsoleApp
     {
         static int size = 12;
         static int tableWidth = 80;
-        static Board board = new Board(size);
+        static Board board;
         static void Main(string[] args)
         {
-           
+            
             Console.WriteLine("Please set difficulty 1-100.");
             //todo add validation to ensure number is between 1-100
             int difficulty = int.Parse(Console.ReadLine());
-      
-
-            board.SetupLiveNeighbors(difficulty);
+            board = new Board(size, difficulty);
 
             printBoard();
             
@@ -27,25 +25,32 @@ namespace MilestoneConsoleApp
 
         static void printBoard()
         {
-            Console.Clear();
+            string[] row = new string[12];
+            Console.WriteLine("  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10  |  11  |");
             PrintLine();
-            PrintRow("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
-            foreach (var cell in board.Grid)
+            for (int i = 0; i < board.Grid.GetLength(0); i++)
             {
-                if (cell.Live)
+                for (int j = 0; j < board.Grid.GetLength(1); j++)
                 {
-                    PrintRow("*");
+                    if (board.Grid[i, j].Live)
+                    {
+                        row[i] = "*";
+                    }
+                    else
+                    {
+                        row[i] = board.Grid[i, j].Neighbors.ToString();
+                    }
+                    Console.Write("  {0}  |", row[i]);
+                    
+                    
                 }
-                PrintRow(cell.Neighbors.ToString());
-            }
-            
-            PrintLine();
-            PrintRow("", "", "", "", "", "", "", "", "", "", "", "", "1");
-            //PrintRow("", "", "", "");
-            PrintLine();
-            PrintRow("", "", "", "", "", "", "", "", "", "", "", "", "2");
-            Console.ReadLine();
+                Console.Write("  "+ i + "  |");
+                Console.WriteLine();
+                PrintLine();
 
+            }
+
+            Console.ReadLine();
 
         }
 

@@ -10,7 +10,7 @@ namespace MilestoneClassLibrary
         public Cell[,] Grid { get; set; }
         public int Difficulty { get; set; }
 
-        public Board(int size)
+        public Board(int size, int difficulty)
         {
             Size = size;
             //for each location on the grid, create a new cell and set the row/column to current index location.  Set live and visited to false.  Neighbors can be set to the number of neighboring cells that are not live.
@@ -27,9 +27,11 @@ namespace MilestoneClassLibrary
                     cell.Live = false;
                     cell.Visited = false;
                     cell.Neighbors = 0;
-                
+                    Grid[i, j] = cell;
                 }
             }
+
+            SetupLiveNeighbors(difficulty);
 
             foreach(var cell in Grid)
             {
@@ -43,25 +45,13 @@ namespace MilestoneClassLibrary
 
         public void SetupLiveNeighbors(int difficulty)
         {
-            decimal gameDValue = (Size * Size) / difficulty;
-            var gameDifficulty = Math.Round(gameDValue, 0);
             Random rand = new Random();
 
-            for (int i = 0; i <= gameDifficulty; i++)
+            for (int i = 0; i <= difficulty; i++)
             {
                 int randomRow = rand.Next(0, 11);
                 int randomColumn = rand.Next(0, 11);
-                while (Grid[randomRow, randomColumn].Live) {
-                    if (randomColumn == 11)
-                    {
-                        randomRow = randomRow + 1;
-                        randomColumn = randomColumn - 11;
-                    }
-                    else {
-                        randomColumn = randomColumn + 1;
-                    }
-                   
-                }                
+                               
                     Grid[randomRow, randomColumn].Live = true; 
 
             }
@@ -96,103 +86,124 @@ namespace MilestoneClassLibrary
 
         public int checkTopLeft(int row, int col)
         {
-           
-            if(Grid[row - 1, col - 1].Live)
+            int calcRow = row - 1;
+            int calcCol = col - 1;
+            int calcLive = 0;
+            if(calcRow < 0 || calcCol < 0)
             {
-                return 1;
+                calcLive = 0;
             }
-            else
+            else if (Grid[calcRow, calcCol].Live)
             {
-                return 0;
+                calcLive = 1;
             }
+            return calcLive;
        
         }
         public int checkTopCenter(int row, int col)
         {
-            if (Grid[row - 1, col].Live)
+            int calcRow = row - 1;
+            int calcLive = 0;
+            if (calcRow < 0)
             {
-                return 1;
+                calcLive = 0;
             }
-            else
+            else if(Grid[row - 1, col].Live)
             {
-                return 0;
+                calcLive = 1;
             }
-
+            return calcLive;
         }
 
         public int checkTopRight(int row, int col)
         {
-            if (Grid[row - 1, col + 1].Live)
+            int calcRow = row - 1;
+            int calcCol = col + 1;
+            int calcLive = 0;
+            if (calcRow < 0 || calcCol > 11)
             {
-                return 1;
+                calcLive = 0;
             }
-            else
+            else if (Grid[row - 1, col + 1].Live)
             {
-                return 0;
+                calcLive = 1;
             }
-
+            return calcLive;
         }
 
         public int checkCenterLeft(int row, int col)
         {
-            if (Grid[row , col - 1].Live)
+           
+            int calcCol = col - 1;
+            int calcLive = 0;
+            if (calcCol < 0)
             {
-                return 1;
+                calcLive = 0;
             }
-            else
+            else if (Grid[row, col - 1].Live)
             {
-                return 0;
+                calcLive = 1;
             }
-
+            return calcLive;
         }
 
         public int checkCenterRight(int row, int col)
         {
-            if (Grid[row, col + 1].Live)
+            int calcCol = col + 1;
+            int calcLive = 0;
+            if (calcCol > 11)
             {
-                return 1;
+                calcLive = 0;
             }
-            else
+            else if (Grid[row, col + 1].Live)
             {
-                return 0;
+                calcLive = 1;
             }
-
+            return calcLive;
         }
         public int checkBottomLeft(int row, int col)
         {
-            if (Grid[row + 1, col - 1].Live)
+            int calcRow = row + 1;
+            int calcCol = col - 1;
+            int calcLive = 0;
+            if (calcRow > 11 || calcCol < 0)
             {
-                return 1;
+                calcLive = 0;
             }
-            else
+            else if(Grid[row + 1, col - 1].Live)
             {
-                return 0;
+                calcLive = 1;
             }
-
+            return calcLive;
         }
         public int checkBottomCenter(int row, int col)
         {
-            if (Grid[row + 1, col].Live)
+            int calcRow = row + 1;
+            int calcLive = 0;
+            if (calcRow > 11)
             {
-                return 1;
+                calcLive = 0;
             }
-            else
+            else if (Grid[row + 1, col].Live)
             {
-                return 0;
+                calcLive = 1;
             }
-
+            return calcLive;
         }
         public int checkBottomRight(int row, int col)
         {
-            if (Grid[row + 1, col + 1].Live)
+            int calcRow = row + 1;
+            int calcCol = col + 1;
+            int calcLive = 0;
+            if (calcRow > 11 || calcCol > 11)
             {
-                return 1;
+                calcLive = 0;
             }
-            else
+            else if (Grid[row + 1, col + 1].Live)
             {
-                return 0;
+                calcLive = 1;
             }
-
+            return calcLive;
         }
 
     }
