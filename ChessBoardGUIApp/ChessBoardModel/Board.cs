@@ -29,13 +29,17 @@ namespace ChessBoardModel
                 for (int c = 0; c < Size; c++)
                 {
                     theGrid[r, c].LegalNextMove = false;
+                    theGrid[r, c].CurrentlyOccupied = false;
                 }
             }
+
+            
 
             switch (chesspiece.ToUpper())
             {
                 case "KNIGHT":
-                    if(currentCell.RowNumber -2 >= 0 && currentCell.ColumnNumber -1 >= 0)
+                    currentCell.CurrentlyOccupied = true;
+                    if (currentCell.RowNumber -2 >= 0 && currentCell.ColumnNumber -1 >= 0)
                     {
                         theGrid[currentCell.RowNumber - 2, currentCell.ColumnNumber - 1].LegalNextMove = true;
                     }
@@ -73,6 +77,7 @@ namespace ChessBoardModel
                     break;
 
                 case "KING":
+                    currentCell.CurrentlyOccupied = true;
                     //-1,-1
                     if (currentCell.RowNumber - 1 >= 0 && currentCell.ColumnNumber - 1 >= 0) {
                         theGrid[currentCell.RowNumber - 1, currentCell.ColumnNumber - 1].LegalNextMove = true;
@@ -116,6 +121,7 @@ namespace ChessBoardModel
                     break;
 
                 case "ROOK":
+                    currentCell.CurrentlyOccupied = true;
                     //Get current location.
                     // rightHorizontalTravel == the amount of spaces to move to the right of current location.  this  == Size - currentCell.ColumnNumber
                     // leftHorizontalTravel == the amount of spaces to the left of the current location the piece can move.  this == currentCell.ColumnNumber -1
@@ -147,6 +153,7 @@ namespace ChessBoardModel
                     break;
 
                 case "BISHOP":
+                    currentCell.CurrentlyOccupied = true;
                     //These checks need to continue to run while something is not false.  Use a while loop to check the conditions do not run out of bounds and while that is true, set legal move to true         
                     int originalRow = currentCell.RowNumber;
                     int originalCol = currentCell.ColumnNumber;
@@ -195,6 +202,7 @@ namespace ChessBoardModel
                     break;
 
                 case "QUEEN":
+                    currentCell.CurrentlyOccupied = true;
                     // Use Rook and Bishop to set legal moves.
                     int queenRightHorizontalTravel = (Size - 1) - currentCell.ColumnNumber;
                     int queenLeftHorizontalTravel = currentCell.ColumnNumber;
