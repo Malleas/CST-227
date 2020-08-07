@@ -27,6 +27,7 @@ namespace MilestoneClassLibrary
                     cell.Live = false;
                     cell.Visited = false;
                     cell.Neighbors = 0;
+                    cell.VisitedNeighbor = false;
                     Grid[i, j] = cell;
                 }
             }
