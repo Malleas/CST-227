@@ -1,17 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
-  <Class Name="MilestoneClassLibrary.Board">
-    <Position X="4.5" Y="3.25" Width="3.75" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="MilestoneClassLibrary.Cell">
-    <Position X="4.5" Y="0.5" Width="3.75" />
-    <TypeIdentifier />
-  </Class>
   <Class Name="MilestoneConsoleApp.Program">
-    <Position X="9.25" Y="2" Width="3.25" />
+    <Position X="8.5" Y="2.5" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>UAAAAAAAQAAAACAAAIAAAAAACAAAAAAAIAIABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAQAAACAAAAIAAAAAAAAAAAEAAIAMABgAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
