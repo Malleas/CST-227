@@ -11,16 +11,16 @@ namespace MilestoneClassLibrary
         public bool Visited { get; set; }
         public bool Live { get; set; }
         public int Neighbors { get; set; }
-        public bool VisitedNeighbor { get; set; }
+       
 
-        public Cell (int row, int column, bool visited, bool live, int neighbors, bool visitedNeighbor)
+        public Cell (int row, int column, bool visited, bool live, int neighbors)
         {
             Row = row;
             Column = column;
             Visited = visited;
             Live = live;
             Neighbors = neighbors;
-            VisitedNeighbor = visitedNeighbor;
+           
         }
 
         public Cell()
@@ -30,7 +30,7 @@ namespace MilestoneClassLibrary
             Visited = false;
             Live = false;
             Neighbors = 0;
-            VisitedNeighbor = false;
+            
         }
     }
 }

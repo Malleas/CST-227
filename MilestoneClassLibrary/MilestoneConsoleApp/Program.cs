@@ -6,12 +6,13 @@ using System;
 
 namespace MilestoneConsoleApp
 {
-    class Program : Board
+    class Program
     {
         static int size = 12;
-        static int tableWidth = 80;
         static Board board;
         static bool done = false;
+        static int[] rowMove = { -1, 0, 1, 1, 1, 0, -1, -1 };
+        static int[] colMove = { -1, -1, -1, 0, 1, 1, 1, 0 };
 
 
         static void Main(string[] args)
@@ -45,9 +46,8 @@ namespace MilestoneConsoleApp
                     col = int.Parse(Console.ReadLine());
                 }
 
-                Cell myLocation = setCurrentCell(row, col);
 
-                setVisitedNeighbors(row, col);
+                floodFill(row, col);
                 //print the grid
                 PrintBoardDuringGame(board);
 
@@ -90,41 +90,6 @@ namespace MilestoneConsoleApp
 
         }
 
-        static void printBoard()
-        {
-            string[] row = new string[12];
-            Console.WriteLine("  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10  |  11  |");
-            PrintLine();
-            for (int i = 0; i < board.Grid.GetLength(0); i++)
-            {
-                for (int j = 0; j < board.Grid.GetLength(1); j++)
-                {
-                    if (board.Grid[i, j].Live)
-                    {
-                        row[i] = "*";
-                    }
-                    else
-                    {
-                        row[i] = board.Grid[i, j].Neighbors.ToString();
-                    }
-                    Console.Write("  {0}  |", row[i]);
-
-
-                }
-                Console.Write("  " + i + "  |");
-                Console.WriteLine();
-                PrintLine();
-
-            }
-
-            Console.ReadLine();
-
-        }
-
-        static void PrintLine()
-        {
-            Console.WriteLine(new string('-', tableWidth));
-        }
 
         static void PrintBoardDuringGame(Board board)
         {
@@ -137,20 +102,9 @@ namespace MilestoneConsoleApp
                         Console.Write("{0}{1}", "|", "* ");
 
                     }
-                    else if (board.Grid[i, j].Visited && !board.Grid[i, j].Live)
+                    else if (board.Grid[i, j].Visited  && !board.Grid[i, j].Live)
                     {
 
-                        if (board.Grid[i, j].Neighbors == 0)
-                        {
-                            Console.Write("{0}{1}", "|", "  ");
-                        }
-                        else
-                        {
-                            Console.Write("{0}{1}", "|", board.Grid[i, j].Neighbors.ToString() + " ");
-                        }
-                    }
-                    else if (board.Grid[i, j].VisitedNeighbor)
-                    {
                         if (board.Grid[i, j].Neighbors == 0)
                         {
                             Console.Write("{0}{1}", "|", "  ");
@@ -171,51 +125,37 @@ namespace MilestoneConsoleApp
             Console.ReadLine();
         }
 
-
-
-        static public Cell setCurrentCell(int row, int col)
+        static bool isValid(int row, int col)
         {
+            if (row >= 0 && row < size && col >= 0 && col < size)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        static public void floodFill(int row, int col)
+        {
+           
+            if (!isValid(row, col) || board.Grid[row, col].Visited)
+            {
+                return;
+            }
             board.Grid[row, col].Visited = true;
-            return board.Grid[row, col];
-        }
-
-        static public void setVisitedNeighbors(int row, int col)
-        {
-            int currentRow = row;
-            int currentCol = col;
-            if (currentRow - 1 >= 0 && currentCol - 1 >= 0)
+            if (board.Grid[row, col].Neighbors == 0 )
             {
-                board.Grid[row - 1, col - 1].VisitedNeighbor = true;
-            }
-            if (currentCol - 1 >= 0)
-            {
-                board.Grid[row, col - 1].VisitedNeighbor = true;
-            }
-            if (currentRow + 1 < size && currentCol - 1 >= 0)
-            {
-                board.Grid[row + 1, col - 1].VisitedNeighbor = true;
-            }
-            if (currentRow + 1 < size)
-            {
-                board.Grid[row + 1, col].VisitedNeighbor = true;
-            }
-            if (currentRow + 1 < size && currentCol + 1 < size)
-            {
-                board.Grid[row + 1, col + 1].VisitedNeighbor = true;
-            }
-            if (currentCol + 1 < size)
-            {
-                board.Grid[row, col + 1].VisitedNeighbor = true;
-            }
-            if (currentRow - 1 >= 0 && currentCol + 1 < size)
-            {
-                board.Grid[row - 1, col + 1].VisitedNeighbor = true;
-            }
-            if (currentRow - 1 >= 0)
-            {
-                board.Grid[row - 1, col].VisitedNeighbor = true;
+                
+                floodFill(row + 1, col);
+                floodFill(row - 1, col);
+                floodFill(row, col + 1);
+                floodFill(row, col - 1);
             }
 
         }
+
     }
 }
