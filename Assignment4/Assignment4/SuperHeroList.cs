@@ -7,18 +7,10 @@ using System.Threading.Tasks;
 
 namespace Assignment4
 {
-    public class SuperHeroList
+    static public class SuperHeroList
     {
-        public List<SuperHero> listOfHeros { get; set; }
+        static public List<SuperHero> listOfHeros = new List<SuperHero>();
 
-        public SuperHeroList (SuperHero hero)
-        {
-            listOfHeros.Add(hero);
-        }
-
-        public SuperHeroList()
-        {
-            listOfHeros = new List<SuperHero>();
-        }
+      
     }
 }

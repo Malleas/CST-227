@@ -13,7 +13,7 @@ namespace Assignment4
 {
     public partial class Form1 : Form
     {
-        public SuperHeroList heroList = new SuperHeroList();
+        
         public Form1()
         {
             
@@ -129,9 +129,8 @@ namespace Assignment4
         {
             string name = herosNameTextBox.Text;
             ArrayList skills = new ArrayList();
-            ArrayList importantDates = new ArrayList();
             string officeLocation = officeLocationListBox.SelectedItem.ToString();
-            ArrayList preferredTravel = new ArrayList();
+            string preferredTravel = "";
             decimal yearsExperience = yearsExperienceNumberSpinner.Value;
             string capeColor = capeColorDialogBox.Color.ToString();
             int villainPotential = villainPotentialTrackBar.Value;
@@ -190,27 +189,25 @@ namespace Assignment4
 
             //record dates
 
-            importantDates.Add(birthdayDatePicker.Text);
-            importantDates.Add(superPowerDiscoveryDatePicker.Text);
-            importantDates.Add(fatefulDayDatePicker.Text);
+            DateTime[] importantDates = new DateTime[3] { birthdayDatePicker.Value, superPowerDiscoveryDatePicker.Value, fatefulDayDatePicker.Value };
 
             //Preferred Transportation Radio btns
 
             if (jetpackRadioBtn.Checked)
             {
-                preferredTravel.Add("Jetpack");
+                preferredTravel = "Jetpack";
             }
             if (landspeederRadioBtn.Checked)
             {
-                preferredTravel.Add("Landspeeder");
+                preferredTravel = "Landspeeder";
             }
             if (teleportRadioBtn.Checked)
             {
-                preferredTravel.Add("Teleport");
+                preferredTravel = "Teleport";
             }
             if (batmobileRadioBtn.Checked)
             {
-                preferredTravel.Add("Batmobile");
+                preferredTravel = "Batmobile";
             }
 
             //set stats
@@ -223,7 +220,13 @@ namespace Assignment4
             SuperHero superHero = new SuperHero(name, skills, officeLocation, preferredTravel, importantDates, yearsExperience, capeColor, villainPotential, stats, portraitFile);
             
 
-            heroList.listOfHeros.Add(superHero);
+            SuperHeroList.listOfHeros.Add(superHero);
+
+          
+
+            Form2 f2 = new Form2();
+            f2.Show();
+            this.Hide();
         }
     }
 

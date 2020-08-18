@@ -10,18 +10,18 @@ namespace Assignment4
     public class SuperHero
     {
         
-        private string Name { get; set; }
-        private ArrayList Skills { get; set; }
-        private string OfficeLocation { get; set; }
-        private ArrayList PreferredTravel { get; set; }
-        private ArrayList ImportantDates { get; set; }
-        private decimal YearsExperience { get; set; }
-        private string CapeColor { get; set; }
-        private int VillainPotential { get; set; }
-        private int[] StatsArray { get; set; }
-        private string PortraitFileName { get; set; }
+        public string Name { get; set; }
+        public ArrayList Skills { get; set; }
+        public string OfficeLocation { get; set; }
+        public string PreferredTravel { get; set; }
+        public DateTime[] ImportantDates { get; set; }
+        public decimal YearsExperience { get; set; }
+        public string CapeColor { get; set; }
+        public int VillainPotential { get; set; }
+        public int[] StatsArray { get; set; }
+        public string PortraitFileName { get; set; }
 
-    public SuperHero(string name, ArrayList skills, string officeLocation, ArrayList preferredTravel, ArrayList importantDatas, decimal yearsExperience,
+    public SuperHero(string name, ArrayList skills, string officeLocation, string preferredTravel, DateTime[] importantDatas, decimal yearsExperience,
             string capeColor, int villainPotential, int[] statsArray, string portraitFileName)
         {
             Name = name;
@@ -41,8 +41,8 @@ namespace Assignment4
             Name = "";
             Skills = new ArrayList();
             OfficeLocation = "";
-            PreferredTravel = new ArrayList();
-            ImportantDates = new ArrayList();
+            PreferredTravel = "";
+            ImportantDates = new DateTime[3];
             YearsExperience = 0;
             CapeColor = "";
             VillainPotential = 0;
