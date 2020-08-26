@@ -88,5 +88,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MilestoneClassLibrary\MilestoneClassLibrary.csproj">
+      <Project>{a5837a35-e78d-454a-bd59-68a660bf2e7d}</Project>
+      <Name>MilestoneClassLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

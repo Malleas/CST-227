@@ -9,6 +9,7 @@ namespace MilestoneClassLibrary
         public int Size { get; set; }
         public Cell[,] Grid { get; set; }
         public int Difficulty { get; set; }
+        
 
         public Board(int size, int difficulty)
         {

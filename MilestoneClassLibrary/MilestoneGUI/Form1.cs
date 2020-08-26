@@ -12,8 +12,8 @@ namespace MilestoneGUI
 {
     public partial class Form1 : Form
     {
-        static public int difficulty = 0;
-        Form2 f2 = new Form2();
+        static public int Difficulty { get; set; }
+
         public Form1()
         {
             InitializeComponent();
@@ -25,7 +25,8 @@ namespace MilestoneGUI
         {
             if(easyCheckBox.CheckState == CheckState.Checked)
             {
-                difficulty = 33;
+                Difficulty = 2;
+                Form2 f2 = new Form2();
                 this.Hide();
                 f2.Show();
             }
@@ -35,7 +36,8 @@ namespace MilestoneGUI
         {
             if (moderateCheckBox.CheckState == CheckState.Checked)
             {
-                difficulty = 66;
+                Difficulty = 66;
+                Form2 f2 = new Form2();
                 this.Hide();
                 f2.Show();
             }
@@ -45,7 +47,8 @@ namespace MilestoneGUI
         {
             if (hardCheckBox.CheckState == CheckState.Checked)
             {
-                difficulty = 99;
+                Difficulty = 99;
+                Form2 f2 = new Form2();
                 this.Hide();
                 f2.Show();
             }
