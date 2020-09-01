@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1209
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextFileDataAccessDemo", "TextFileDataAccessDemo\TextFileDataAccessDemo.csproj", "{18B2BD4E-8EE7-4968-9E0B-E0CA28DEF7CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextFileDataAccessDemoGUIApp", "TextFileDataAccessDemoGUIApp\TextFileDataAccessDemoGUIApp.csproj", "{BE6F2319-59F0-42BF-8BFC-8D29E70E8D59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{18B2BD4E-8EE7-4968-9E0B-E0CA28DEF7CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18B2BD4E-8EE7-4968-9E0B-E0CA28DEF7CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18B2BD4E-8EE7-4968-9E0B-E0CA28DEF7CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18B2BD4E-8EE7-4968-9E0B-E0CA28DEF7CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE6F2319-59F0-42BF-8BFC-8D29E70E8D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE6F2319-59F0-42BF-8BFC-8D29E70E8D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE6F2319-59F0-42BF-8BFC-8D29E70E8D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE6F2319-59F0-42BF-8BFC-8D29E70E8D59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C0065727-914A-4AA3-BAAE-851D6F2C2222}
+		SolutionGuid = {34A3B1AE-B171-486B-9183-2DF18232F805}
 	EndGlobalSection
 EndGlobal

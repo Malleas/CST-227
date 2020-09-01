@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1209
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextFileDataAccessDemo", "TextFileDataAccessDemo\TextFileDataAccessDemo.csproj", "{18B2BD4E-8EE7-4968-9E0B-E0CA28DEF7CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreatePersonApp", "CreatePersonApp\CreatePersonApp.csproj", "{0C092738-42AD-4C59-8977-B82CFE429081}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{18B2BD4E-8EE7-4968-9E0B-E0CA28DEF7CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18B2BD4E-8EE7-4968-9E0B-E0CA28DEF7CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18B2BD4E-8EE7-4968-9E0B-E0CA28DEF7CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18B2BD4E-8EE7-4968-9E0B-E0CA28DEF7CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C092738-42AD-4C59-8977-B82CFE429081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C092738-42AD-4C59-8977-B82CFE429081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C092738-42AD-4C59-8977-B82CFE429081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C092738-42AD-4C59-8977-B82CFE429081}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C0065727-914A-4AA3-BAAE-851D6F2C2222}
+		SolutionGuid = {7EEDE6B2-E9AE-4763-88B7-D058A2F15A41}
 	EndGlobalSection
 EndGlobal
