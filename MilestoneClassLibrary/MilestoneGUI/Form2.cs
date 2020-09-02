@@ -22,6 +22,7 @@ namespace MilestoneGUI
         static int liveCount = 0;
         static int visitedCount = 0;
         string elapsedTime = "";
+        
         public Form2()
         {
             InitializeComponent();
@@ -101,13 +102,13 @@ namespace MilestoneGUI
                     }
                     watch.Stop();
                     gameTimer.Enabled = false;
-                    DialogResult dialogResult = MessageBox.Show("Game over, Would you like to play again?", "", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
+                    DialogResult dialogResult = MessageBox.Show("Game over!", "", MessageBoxButtons.OKCancel);
+                    if (dialogResult == DialogResult.OK)
                     {
 
-                        Form1 f1 = new Form1();
+                        Form3 f3 = new Form3();
                         this.Close();
-                        f1.Show();
+                        f3.Show();
                     }
                     else
                     {
@@ -152,19 +153,18 @@ namespace MilestoneGUI
                             buttonGrid[cell.Row, cell.Column].BackgroundImageLayout = ImageLayout.Center;
                             watch.Stop();
                             gameTimer.Enabled = false;
-                            DialogResult dialogResult = MessageBox.Show("You've Won!! Would you like to play again?" + "\n" + "Your total game time was: " + elapsedTime, "", MessageBoxButtons.YesNo);
-                            if (dialogResult == DialogResult.Yes)
+                            DialogResult dialogResult = MessageBox.Show("You've Won!!" + "\n" + "Your total game time was: " + elapsedTime, "", MessageBoxButtons.OKCancel);
+                            if (dialogResult == DialogResult.OK)
                             {
 
-                                Form1 f1 = new Form1();
+                                Form3 f3 = new Form3();
                                 this.Close();
-                                f1.Show();
+                                f3.Show();
                             }
                             else
                             {
                                 Application.Exit();
                             }
-                           // gameTimer.Enabled = false;
                         }
                     }
                 }
@@ -206,6 +206,7 @@ namespace MilestoneGUI
         private void timer1_Tick(object sender, EventArgs e)
         {
             TimeSpan ts = watch.Elapsed;
+            Form3.timespan = ts;
             elapsedTime = string.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
             displayTimerLabel.Text = elapsedTime;
         }
