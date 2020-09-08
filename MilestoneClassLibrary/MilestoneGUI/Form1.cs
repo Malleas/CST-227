@@ -25,7 +25,7 @@ namespace MilestoneGUI
         {
             if(easyCheckBox.CheckState == CheckState.Checked)
             {
-                Difficulty = 33;
+                Difficulty = 2;
                 Form2 f2 = new Form2();
                 this.Hide();
                 f2.Show();

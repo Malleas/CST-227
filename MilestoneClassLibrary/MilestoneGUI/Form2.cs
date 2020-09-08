@@ -19,10 +19,10 @@ namespace MilestoneGUI
         static Board board;
         public int turnCount = 0;
         private Stopwatch watch = new Stopwatch();
-        static int liveCount = 0;
-        static int visitedCount = 0;
+         int liveCount = 0;
+         int visitedCount = 0;
         string elapsedTime = "";
-        
+
         public Form2()
         {
             InitializeComponent();
@@ -33,6 +33,7 @@ namespace MilestoneGUI
 
         public void populateGrid()
         {
+
             int buttonSize = gameBoardPanel.Width / size;
             gameBoardPanel.Height = gameBoardPanel.Width;
             for (int row = 0; row < size; row++)
@@ -54,11 +55,13 @@ namespace MilestoneGUI
             }
         }
 
-     
+
 
         private void button_MouseDown(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
+            int currentLiveCount = 0;
+            int currentVisitedCount = 0;
+            if (e.Button == MouseButtons.Right)
             {
                 string[] strArr = (sender as Button).Tag.ToString().Split('|');
                 int row = int.Parse(strArr[0]);
@@ -90,14 +93,6 @@ namespace MilestoneGUI
                             buttonGrid[cell.Row, cell.Column].BackgroundImage = gameImageList.Images[0];
                             buttonGrid[cell.Row, cell.Column].BackgroundImageLayout = ImageLayout.Center;
                         }
-                        else if (cell.Neighbors > 0)
-                        {
-                            buttonGrid[cell.Row, cell.Column].Text = cell.Neighbors.ToString();
-                        }
-                        else
-                        {
-                            buttonGrid[cell.Row, cell.Column].Text = "";
-                        }
 
                     }
                     watch.Stop();
@@ -120,16 +115,15 @@ namespace MilestoneGUI
                 {
                     floodFill(row, col);
                 }
-
                 foreach (var cell in board.Grid)
                 {
                     if (cell.Live)
                     {
-                        liveCount += 1;
+                        currentLiveCount += 1;
                     }
                     if (cell.Visited)
                     {
-                        visitedCount += 1;
+                        currentVisitedCount += 1;
                         buttonGrid[cell.Row, cell.Column].BackColor = Color.LightBlue;
                         if (cell.Neighbors > 0)
                         {
@@ -141,35 +135,52 @@ namespace MilestoneGUI
                         }
                     }
                 }
+                if (currentVisitedCount > visitedCount)
+                {
+                    visitedCount = visitedCount + (currentVisitedCount - visitedCount);
+                }
+                if (currentLiveCount > liveCount)
+                {
+                    liveCount = liveCount + (currentLiveCount - liveCount);
+                }
                 turnCount += 1;
                 turnsCountLabel.Text = turnCount.ToString();
                 if (visitedCount == (144 - liveCount))
                 {
                     foreach (var cell in board.Grid)
                     {
-                        if (cell.Live && !cell.Visited)
+                        cell.Visited = true;
+                        buttonGrid[cell.Row, cell.Column].BackColor = Color.LightBlue;
+                        if (cell.Live)
                         {
-                            buttonGrid[cell.Row, cell.Column].BackgroundImage = gameImageList.Images[1];
+                            buttonGrid[cell.Row, cell.Column].BackgroundImage = gameImageList.Images[0];
                             buttonGrid[cell.Row, cell.Column].BackgroundImageLayout = ImageLayout.Center;
-                            watch.Stop();
-                            gameTimer.Enabled = false;
-                            DialogResult dialogResult = MessageBox.Show("You've Won!!" + "\n" + "Your total game time was: " + elapsedTime, "", MessageBoxButtons.OKCancel);
-                            if (dialogResult == DialogResult.OK)
-                            {
-
-                                Form3 f3 = new Form3();
-                                this.Close();
-                                f3.Show();
-                            }
-                            else
-                            {
-                                Application.Exit();
-                            }
                         }
+                        
+                    }
+                    watch.Stop();
+                    gameTimer.Enabled = false;
+                    DialogResult dialogResult = MessageBox.Show("You've Won!!" + "\n" + "Your total game time was: " + elapsedTime, "", MessageBoxButtons.OKCancel);
+                    if (dialogResult == DialogResult.OK)
+                    {
+
+                        Form3 f3 = new Form3();
+                        this.Close();
+                        f3.Show();
+                    }
+                    else
+                    {
+                        Application.Exit();
                     }
                 }
+
             }
         }
+
+        private void updateBoard(Board board)
+        {
+        }
+
 
         static bool isValid(int row, int col)
         {
